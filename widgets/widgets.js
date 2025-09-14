@@ -494,7 +494,7 @@ async function createWidgetSystem() {
   if (setDefaults) {
     widgetData.rightPannels[0].widgets.push("CompactWeatherWidget");
     widgetData.leftPannels.push({
-      widgets: ["TutorialWidget", "DelijnWidget"],
+      widgets: ["TutorialWidget", "DelijnWidget", "AIChatWidget"],
     });
   }
 
@@ -716,7 +716,11 @@ if (getPageURL().path == "") {
   });
 
   document.addEventListener("keyup", async (e) => {
-    if (e.target?.tagName == "INPUT") {
+    if (
+      e.target?.tagName == "INPUT" ||
+      e.target?.tagName == "TEXTAREA" ||
+      e.target?.classList?.contains("ai-chat-input")
+    ) {
       return;
     }
     if (e.key == "Escape" && widgetEditMode) {
